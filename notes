@@ -6,7 +6,8 @@ public class Stack<Item> implements Iterable<Item>
   boolean isEmpty() is the stack empty?
   int size() number of items in the stack
   }
-Generics. An essential characteristic of collection ADTs is that we should be able to use
+Generics. 
+An essential characteristic of collection ADTs is that we should be able to use
 them for any type of data. A specific Java mechanism known as generics, also known
 as parameterized types, enables this capability. 
 The notation <Item> after the class name in each of our APIs defines the name Item as a type parameter, a symbolic placeholder
@@ -22,3 +23,18 @@ stack.push("Test");
 ...
 String next = stack.pop();
 to use a stack for String objects.
+with generics, we can use one API (and one implementation) for all types of data, even types that are implemented
+in the future.
+
+Iterable collections.
+With it, we can write clear and compact code that is free
+from dependence on the details of a collection’s implementation. For example, suppose
+that a client maintains a collection of transactions in a Queue, as follows:
+Queue<Transaction> collection = new Queue<Transaction>();
+If the collection is iterable, the client can print a transaction list with a single statement:
+for (Transaction t : collection)
+{ StdOut.println(t); }
+This construct is known as the foreach statement: you can read the for statement as for
+each transaction t in the collection, execute the following block of code. This client code
+does not need to know anything about the representation or the implementation of the
+collection; it just wants to process each of the items in the collection.
